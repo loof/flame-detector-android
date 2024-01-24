@@ -1,5 +1,5 @@
 //
-// Created by ypeis on 24/01/2024.
+// Created by Yves Peissard on 24/01/2024.
 //
 
 #ifndef FLAME_SENSOR_LED_H
