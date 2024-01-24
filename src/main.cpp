@@ -3,20 +3,25 @@
 //
 
 #include <Arduino.h>
-#include "../lib/Led/src/Led.h"
+#include "main.h"
+#include <Led.h>
+#include "FlameSensor.h"
 
-int _pin_r = 3;
-int _pin_g = 5;
-int _pin_b = 6;
 
-coffeeroasters::Led _led(_pin_r, _pin_g, _pin_b, 0, 0, 0);
+
+coffeeroasters::Led _led(PIN_R, PIN_G, PIN_B, DEFAULT_R, DEFAULT_G, DEFAULT_B);
+coffeeroasters::FlameSensor _flame_sensor;
 
 
 void setup() {
     _led.init();
-    _led.set_rgb_colors(0, 0, 255);
-    _led.set_on(true);
+    _led.set_rgb_colors(COLOR_R, COLOR_G, COLOR_B);
 }
 
 void loop() {
+    if (_flame_sensor.is_flame_detected()) {
+        _led.set_on(true);
+    } else {
+        _led.set_on(false);
+    }
 }
